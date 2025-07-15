@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class CustomScaffold extends StatelessWidget {
   final Widget child;
   PreferredSizeWidget? appBar;
-  BottomSheet? bottomSheet;
+  Widget? bottomSheet;
   BottomNavigationBar? bottomNavigationBar;
 
   CustomScaffold({
