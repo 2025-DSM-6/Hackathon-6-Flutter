@@ -12,7 +12,7 @@ class LoginScreenPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return CustomScaffold(
       bottomSheet: Padding(
-        padding: EdgeInsets.only(bottom: 60.0.h),
+        padding: EdgeInsets.only(bottom: 32.0.h),
         child: CustomButton(
           text: '로그인',
           onPressed: () {

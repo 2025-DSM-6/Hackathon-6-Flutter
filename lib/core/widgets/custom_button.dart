@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomButton extends StatelessWidget {
-  Color? backgroundColor;
-  VoidCallback? onPressed;
+  final Color? backgroundColor;
+  final VoidCallback? onPressed;
   final String text;
 
   CustomButton({

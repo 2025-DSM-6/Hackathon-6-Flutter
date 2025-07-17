@@ -1,21 +1,36 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class CustomTextField extends StatelessWidget {
+class CustomTextField extends StatefulWidget {
   final String hintText;
   final bool obscureText;
   final TextEditingController controller;
-  final void Function()? toggleVisibility;
-  final bool isPasswordVisible;
 
-  CustomTextField({
+  const CustomTextField({
     super.key,
     required this.hintText,
     required this.controller,
     this.obscureText = false,
-    this.toggleVisibility,
-    this.isPasswordVisible = false,
   });
+
+  @override
+  State<CustomTextField> createState() => _CustomTextFieldState();
+}
+
+class _CustomTextFieldState extends State<CustomTextField> {
+  late bool _isObscured;
+
+  @override
+  void initState() {
+    super.initState();
+    _isObscured = widget.obscureText;
+  }
+
+  void _toggleVisibility() {
+    setState(() {
+      _isObscured = !_isObscured;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -27,21 +42,22 @@ class CustomTextField extends StatelessWidget {
     );
 
     return TextField(
-      obscureText: false,
+      obscureText: _isObscured,
+      controller: widget.controller,
       decoration: InputDecoration(
-        hintText: hintText,
+        hintText: widget.hintText,
         hintStyle: TextStyle(
           color: const Color(0xffC9C9C9),
           fontSize: 16.sp,
           fontWeight: FontWeight.w500,
         ),
-        suffixIcon: obscureText
+        suffixIcon: widget.obscureText
             ? IconButton(
                 icon: Icon(
-                  isPasswordVisible ? Icons.visibility : Icons.visibility_off,
+                  _isObscured ? Icons.visibility_off : Icons.visibility,
                   color: Colors.black,
                 ),
-                onPressed: toggleVisibility,
+                onPressed: _toggleVisibility,
               )
             : null,
         border: baseBorder,
